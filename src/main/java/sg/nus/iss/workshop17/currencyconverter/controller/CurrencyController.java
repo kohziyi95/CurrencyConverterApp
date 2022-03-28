@@ -3,6 +3,8 @@ package sg.nus.iss.workshop17.currencyconverter.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,12 +17,15 @@ import jakarta.json.JsonObject;
 import sg.nus.iss.workshop17.currencyconverter.service.CurrencyService;
 
 @Controller
+@PropertySource("classpath:local.properties")
 public class CurrencyController {
     
     @Autowired
     private CurrencyService service;
 
-    private static final String API_KEY = "59e2a534832dcd5aa904";
+    @Value("${apiKey}")
+    private String API_KEY;
+
     private static final String BASE_URL = "https://free.currconv.com/api/v7/";
     
 
